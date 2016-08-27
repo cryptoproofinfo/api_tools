@@ -11,20 +11,9 @@ import json
 # Variables
 xpubkeys = environ.get('XPUBKEYS')
 sigs = environ.get('SIGS')
-if not xpubkeys or sigs:
-    xpubkeys = False
-    sigs = False
 
 mode = argv[1]
 info = argv[2] if len(argv) > 2 else False
-
-if not xpubkeys:
-    print 'invalid xpubkey value'
-    exit()
-
-if not sigs:
-    print 'invalid sigs value'
-    exit()
 
 def get_data(url, data):
     request = Request(url, data)
@@ -33,6 +22,15 @@ def get_data(url, data):
     data = json.load(response)
     response.close()
     return data
+
+# Check valid variables
+if not xpubkeys:
+    print 'invalid xpubkey value'
+    exit()
+
+if not sigs:
+    print 'invalid sigs value'
+    exit()
 
 # Check for valid url
 l = ('search', 'url', 'index', 'withdraw', 'verify', 'account', 'login_history', 'subkey_activity', 'transaction_history')
