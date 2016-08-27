@@ -3,7 +3,11 @@ Tools to easily interact with the cryptoproof.info api
 
 ## Docker container
 ### Build:
+Clone the repo, add a copy of your SSL key named as `cert.key` into the folder and execute the command
 `docker build --build-arg XPUBKEYS=<extended_public_keys> --build-arg SIGS=<signatories> -f Dockerfile_api_tool -t cryptoproof:api_tool .`
+
+If you do not have an SSL key you can use a blank file in its place
+`touch cert.key`
 
 ### Run:
 `docker run --rm cryptoproof:api_tool <command>`
